@@ -1,6 +1,10 @@
 import java.util.ArrayList;
 import java.util.List;
-
+/**
+ * Entry point for the executive class
+ * Creates a custom single linked list with Tariffs as objects,
+ * performing main functional methods, adding, removing, getting, etc.
+ */
 public class Main {
     public static void main(String[] args) {
 

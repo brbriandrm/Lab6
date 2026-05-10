@@ -3,8 +3,15 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
 
+/**
+ * Custom collection  to store Tariff type objects
+ * Based on single linked list
+ *
+ */
 public class TariffSingleLinkedList implements List<Tariff> {
-
+    /**
+     * Private class that represents an element of linked list
+     */
 
     private class Node {
         Tariff data;
@@ -27,16 +34,27 @@ public class TariffSingleLinkedList implements List<Tariff> {
     private Node head;
     private int size;
 
+    /**
+     * Constructor that creates empty linked list
+     */
     public TariffSingleLinkedList() {
         this.head = null;
         this.size = 0;
     }
 
+    /**
+     * Constructor that creates linked list and adds a tariff
+     * @param singleTariff tariff, that becomes the head of the list
+     */
     public TariffSingleLinkedList(Tariff singleTariff) {
         this();
         add(singleTariff);
     }
 
+    /**
+     * Constructor that creates linked list filled with tariffs from already existing collection
+     * @param collection default collection of tariffs
+     */
     public TariffSingleLinkedList(Collection<? extends Tariff> collection) {
         this();
         for (Tariff t : collection) {
@@ -44,18 +62,30 @@ public class TariffSingleLinkedList implements List<Tariff> {
         }
     }
 
+    /**
+     * Returns the tariff count in the linked list
+     * @return size of linked list
+     */
     @Override
     public int size() {
         return size;
     }
 
+    /**
+     * Checks if the linked list is empty
+     * @return true, if list is empty, otherwise false
+     */
     @Override
     public boolean isEmpty() {
         return head == null;
     }
 
 
-
+    /**
+     * Adds new tariff in the end of the linked list
+     * @param t tariff to be added
+     * @return always true
+     */
     @Override
     public boolean add(Tariff t){
         Node newNode = new Node(t);
@@ -73,11 +103,20 @@ public class TariffSingleLinkedList implements List<Tariff> {
         return true;
     }
 
+    /**
+     * Clears the list
+     */
     public void clear() {
         head = null;
         size = 0;
     }
 
+    /**
+     * Returns tariff with certain index
+     * @param index position of the element
+     * @return tariff object
+     * @throws  IndexOutOfBoundsException if given index is out of list's bounds
+     */
     @Override
     public Tariff get(int index) {
         if(index < 0 || index >= size) {
@@ -90,6 +129,13 @@ public class TariffSingleLinkedList implements List<Tariff> {
         return current.data;
     }
 
+    /**
+     * Removes the node from the list
+     * Connects previous node link to the post-current node, removing the current one
+     * @param index position of element
+     * @return tariff object
+     * @throws IndexOutOfBoundsException if given index is out of list's bounds
+     */
     @Override
     public Tariff remove(int index) {
         if(index < 0 || index >= size()) {

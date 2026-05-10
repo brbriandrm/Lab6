@@ -35,9 +35,9 @@ public class TariffSingleLinkedListTest {
         list.add(t3);
 
         assertEquals(3, list.size());
-        assertEquals(t1, list.get(1));
-        assertEquals(t2, list.get(2));
-        assertEquals(t3, list.get(3));
+        assertEquals(t1, list.get(0));
+        assertEquals(t2, list.get(1));
+        assertEquals(t3, list.get(2));
     }
 
     @Test

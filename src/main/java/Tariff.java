@@ -2,7 +2,7 @@
  * Abstract class that represents basic template of tariff
  */
 
-public abstract class Tariff {
+public class Tariff {
     private String name;
     private double subsCost;
     private int clientCount;

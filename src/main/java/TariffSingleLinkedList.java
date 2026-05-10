@@ -54,6 +54,66 @@ public class TariffSingleLinkedList implements List<Tariff> {
         return head == null;
     }
 
+
+
+    @Override
+    public boolean add(Tariff t){
+        Node newNode = new Node(t);
+        if(head == null) {
+            head = newNode;
+            size++;
+            return true;
+        }
+        Node current = head;
+        while(current.getNext() != null) {
+            current = current.getNext();
+        }
+        current.next = newNode;
+        size++;
+        return true;
+    }
+
+    public void clear() {
+        head = null;
+        size = 0;
+    }
+
+    @Override
+    public Tariff get(int index) {
+        if(index < 0 || index >= size) {
+            throw new IndexOutOfBoundsException("Invalid index");
+        }
+        Node current = head;
+        for(int i = 0; i < index; i++) {
+            current = current.getNext();
+        }
+        return current.data;
+    }
+
+    @Override
+    public Tariff remove(int index) {
+        if(index < 0 || index >= size()) {
+            throw new IndexOutOfBoundsException("Invalid index");
+        }
+        Node previous = null;
+        Node current = head;
+        if(index == 0) {
+            Tariff result = current.data;
+            head = head.next;
+            size -= 1;
+            return result;
+
+        }
+        for(int i = 0; i < index; i++) {
+            previous = current;
+            current = current.getNext();
+        }
+        previous.next = current.getNext();
+        size -= 1;
+        return current.data;
+
+    }
+
     @Override
     public boolean contains(Object o) {
         return false;
@@ -72,23 +132,6 @@ public class TariffSingleLinkedList implements List<Tariff> {
     @Override
     public <T> T[] toArray(T[] ts) {
         return null;
-    }
-
-    @Override
-    public boolean add(Tariff t){
-        Node newNode = new Node(t);
-        if(head == null) {
-            head = newNode;
-            size++;
-            return true;
-        }
-        Node current = head;
-        while(current.getNext() != null) {
-            current = current.getNext();
-        }
-        current.next = newNode;
-        size++;
-        return true;
     }
 
     @Override
@@ -121,22 +164,7 @@ public class TariffSingleLinkedList implements List<Tariff> {
         return false;
     }
 
-    public void clear() {
-        head = null;
-        size = 0;
-    }
 
-    @Override
-    public Tariff get(int index) {
-        if(index < 0 || index >= size) {
-            throw new IndexOutOfBoundsException("Invalid index");
-        }
-        Node current = head;
-        for(int i = 0; i < index; i++) {
-            current = current.getNext();
-        }
-        return current.data;
-    }
 
     @Override
     public Tariff set(int i, Tariff tariff) {
@@ -148,29 +176,6 @@ public class TariffSingleLinkedList implements List<Tariff> {
 
     }
 
-    @Override
-    public Tariff remove(int index) {
-        if(index < 0 || index >= size()) {
-            throw new IndexOutOfBoundsException("Invalid index");
-        }
-        Node previous = null;
-        Node current = head;
-        if(index == 0) {
-            Tariff result = current.data;
-            head = head.next;
-            size -= 1;
-            return result;
-
-        }
-        for(int i = 0; i < index; i++) {
-            previous = current;
-            current = current.getNext();
-        }
-        previous.next = current.getNext();
-        size -= 1;
-        return current.data;
-
-    }
 
     @Override
     public int indexOf(Object o) {
